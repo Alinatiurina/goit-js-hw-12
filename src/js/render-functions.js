@@ -8,24 +8,31 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 import { getImages } from "./pixabay-api.js";
 
-const galerry = document.querySelector(".gallery");
+const gallery = document.querySelector(".gallery");
+const loadBtn = document.querySelector(".load-btn");
 
 export function createMarkup() {
 	showLoader()
 	getImages()
+		
 		.then(data => {
-        const images = data.hits.slice(0, 9);
-                
-			 if (data.hits.length === 0) {
-                iziToast.error({
-                title: '',
-                position: 'topRight',
-                message: `Sorry, there are no images matching your search query. Please try again!`,
-                })
-            }
-			
-    galerry.innerHTML = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
-        return `<li class="gallery-item">
+			console.log(data);
+			const images = data.hits;
+		
+			 if (data.totalHits === 0) {
+				 
+				 iziToast.error({
+					 title: '',
+					 position: 'topRight',
+					 message: `Sorry, there are no images matching your search query. Please try again!`,
+				 });
+				 loadBtn.classList.add("hidden");
+				 hideLoader();
+			 }
+			 
+			else{
+			const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
+				return `<li class="gallery-item">
 	<a class="gallery-link" href="${largeImageURL}">
 		<img 
 			class="images" 
@@ -39,19 +46,37 @@ export function createMarkup() {
 	<li class="detail-item"><span class="bold">Comments</span> ${comments}</li>
 	<li class="detail-item"><span class="bold">Downloads</span> ${downloads}</li>
 	</ul>
-</a></li>`  
-    }).join('')
-
-		})
-		.then(data => {
+</a></li>`
+			}).join('');
+			gallery.insertAdjacentHTML("beforeend", markup);
 			lightbox.refresh();
 			hideLoader();
-			
-            return data
-        })
+			loadBtn.classList.remove("hidden");
+			return data;
+}}
+)
+		
+		.catch(error => {
+		iziToast.error({
+					 title: '',
+					 position: 'topRight',
+					 message: `Incorrect request!`,
+				 });
+    })
 }
-
 const lightbox = new SimpleLightbox('.gallery a', {
 captionsData: 'alt',
 captionDelay: 250,
-        }) 
+}) 
+
+
+// .then(data => {
+// 			if (data.hits < 15) {
+// 				iziToast.info({
+// 					 title: '',
+// 					 position: 'topRight',
+// 					 message: `Sorry, there are no images matching your search query. Please try again!`,
+// 				 });
+// 				loadBtn.classList.add("hidden");
+// 			}
+// 		}

@@ -74,7 +74,26 @@ body {
 .bold {
   font-weight: bold;
 }
-
+.load-btn {
+  border-radius: 8px;
+  border-color: transparent;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background-color: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.hidden {
+  display: none;
+}
 .loader {
   width: 48px;
   height: 48px;
