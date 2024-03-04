@@ -13,7 +13,6 @@ form.addEventListener('submit', serchImage);
 export let page = 1;
 export let input
 
-
 function serchImage(event) {
     
    input = form.search.value.trim();
@@ -49,36 +48,30 @@ export function hideLoader() {
 
 
 
-loadBtn.addEventListener("click", data => {
- page += 1; 
-if (data.hits.length<15)
-{
-	iziToast.info({
-		 title: '',
-		 position: 'topRight',
-		 message: `We're sorry, but you've reached the end of search results.`,
-		}); 
-			loadBtn.classList.add("hidden");
-	}
+function LoadMore() {
+  page += 1;
   try {
-    createMarkup(); 
-    
+    createMarkup();
+    Scroll();
   } catch (err) {
     console.log(err);
-  }
-  
-});
+  } 
 
+}
+
+loadBtn.addEventListener("click", LoadMore);
 
 function Scroll() {
   const galleryHeight =
     gallery.firstElementChild.getBoundingClientRect().height;
+  
   window.scrollBy({
   top: 3 * galleryHeight,
   behavior: "smooth",
 })
 }
-// async function LoadMore() {
+
+// 
   
  	// if (images < 15) {
 				

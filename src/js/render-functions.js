@@ -18,7 +18,6 @@ export function createMarkup() {
 		.then(data => {
 			console.log(data);
 			const images = data.hits;
-		
 			 if (data.totalHits === 0) {
 				 
 				 iziToast.error({
@@ -29,7 +28,15 @@ export function createMarkup() {
 				 loadBtn.classList.add("hidden");
 				 hideLoader();
 			 }
-			 
+			 else if (data.hits < 15) {
+				 iziToast.info({
+					 title: '',
+					 message: `We're sorry, but you've reached the end of search results.`,
+					 position: 'topRight',
+				 });
+				 loadBtn.classList.add("hidden");
+				 hideLoader();
+			 }
 			else{
 			const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
 				return `<li class="gallery-item">
@@ -55,7 +62,6 @@ export function createMarkup() {
 			return data;
 }}
 )
-		
 		.catch(error => {
 		iziToast.error({
 					 title: '',
