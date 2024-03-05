@@ -16,7 +16,7 @@ export function createMarkup() {
 	getImages()
 		
 		.then(data => {
-			console.log(data);
+			// console.log(data);
 			const images = data.hits;
 			 if (data.totalHits === 0) {
 				 
@@ -25,8 +25,8 @@ export function createMarkup() {
 					 position: 'topRight',
 					 message: `Sorry, there are no images matching your search query. Please try again!`,
 				 });
-				
 				 hideLoader();
+				 loadBtn.classList.add("hidden");
 			 }
 			 
 			else{

@@ -1,8 +1,6 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-
-import { getImages } from "./js/pixabay-api.js";
 import { createMarkup } from "./js/render-functions.js";
 
 const form = document.querySelector(".search-form");
@@ -48,7 +46,7 @@ export function hideLoader() {
 }
 
 
-function LoadMore() {
+loadBtn.addEventListener("click", data => {
   page += 1;
   try {
     if (page >= maxPage) {
@@ -61,15 +59,13 @@ function LoadMore() {
     }
     else {
       createMarkup();
-    
+      setTimeout(()=>{Scroll()},500);
     }
   } catch (err) {
     console.log(err);
-  } 
-
-}
-
-loadBtn.addEventListener("click", LoadMore);
+  }
+  
+})
 
 function Scroll() {
   const galleryHeight =
