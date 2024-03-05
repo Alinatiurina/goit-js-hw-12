@@ -66,15 +66,3 @@ const lightbox = new SimpleLightbox('.gallery a', {
 captionsData: 'alt',
 captionDelay: 250,
 }) 
-
-
-// .then(data => {
-// 			if (data.hits < 15) {
-// 				iziToast.info({
-// 					 title: '',
-// 					 position: 'topRight',
-// 					 message: `Sorry, there are no images matching your search query. Please try again!`,
-// 				 });
-// 				loadBtn.classList.add("hidden");
-// 			}
-// 		}

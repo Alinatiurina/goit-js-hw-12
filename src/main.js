@@ -11,7 +11,8 @@ const loadBtn = document.querySelector(".load-btn");
 
 form.addEventListener('submit', serchImage);
 export let page = 1;
-export let input
+export let input;
+const maxPage = 33;
 
 function serchImage(event) {
     
@@ -47,15 +48,25 @@ export function hideLoader() {
 }
 
 
-
 function LoadMore() {
   page += 1;
   try {
-    createMarkup();
-    Scroll();
+    if (page >= maxPage) {
+    iziToast.info({
+					 title: '',
+					 position: 'topRight',
+					 message: `Sorry, there are no images matching your search query. Please try again!`,
+				 })
+	loadBtn.classList.add("hidden");
+    }
+    else {
+      createMarkup();
+    
+    }
   } catch (err) {
     console.log(err);
   } 
+
 }
 
 loadBtn.addEventListener("click", LoadMore);
@@ -69,28 +80,3 @@ function Scroll() {
   behavior: "smooth",
 })
 }
-
-// 
-  
- 	// if (images < 15) {
-				
-	// 			loadBtn.classList.add("hidden");
-	// 			iziToast.info({
-	// 				title: '',
-	// 				message: `We're sorry, but you've reached the end of search results.`,
-	// 				position: 'topRight',
-	// 			});
-				
-	// 		}
-//  if (page === maxPage) {
-//       loadBtn.classList.add("hidden");
-  //     }
-// }
-//     // і обовʼязково після натискання на кнопку та закінчення запиту перевіряємо, якщо ми зараз знаходимось на останній сторінці - то ховаємо кнопку і видаляємо обробник подій!
-   
-//   }
-
-
-
-
-
