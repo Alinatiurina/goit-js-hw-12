@@ -56,7 +56,6 @@ function LoadMore() {
   } catch (err) {
     console.log(err);
   } 
-
 }
 
 loadBtn.addEventListener("click", LoadMore);

@@ -25,18 +25,10 @@ export function createMarkup() {
 					 position: 'topRight',
 					 message: `Sorry, there are no images matching your search query. Please try again!`,
 				 });
-				 loadBtn.classList.add("hidden");
+				
 				 hideLoader();
 			 }
-			 else if (data.hits < 15) {
-				 iziToast.info({
-					 title: '',
-					 message: `We're sorry, but you've reached the end of search results.`,
-					 position: 'topRight',
-				 });
-				 loadBtn.classList.add("hidden");
-				 hideLoader();
-			 }
+			 
 			else{
 			const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
 				return `<li class="gallery-item">
