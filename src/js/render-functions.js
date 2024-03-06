@@ -16,7 +16,7 @@ export function createMarkup() {
 	getImages()
 		
 		.then(data => {
-			// console.log(data);
+
 			const images = data.hits;
 			 if (data.totalHits === 0) {
 				 

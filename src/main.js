@@ -13,8 +13,8 @@ export let input;
 const maxPage = 33;
 
 function serchImage(event) {
-    
-   input = form.search.value.trim();
+  page = 1;
+    input = form.search.value.trim();
     event.preventDefault();
     gallery.innerHTML = null;
 
