@@ -29,6 +29,7 @@ function serchImage(event) {
     }
     else {
       createMarkup();
+      loadBtn.classList.remove("hidden");
     }
 }
 
@@ -50,18 +51,18 @@ export function hideLoader() {
 loadBtn.addEventListener("click", data => {
   page += 1;
   try {
+    createMarkup();
+    loadBtn.classList.remove("hidden");
+    setTimeout(()=>{Scroll()},500);
     if (page >= maxPage) {
-    iziToast.info({
-					 title: '',
-					 position: 'topRight',
-					 message: `Sorry, there are no images matching your search query. Please try again!`,
-				 })
+      iziToast.info({
+        title: '',
+        position: 'topRight',
+        message: `Sorry, there are no images matching your search query. Please try again!`,
+      });
 	loadBtn.classList.add("hidden");
     }
-    else {
-      createMarkup();
-      setTimeout(()=>{Scroll()},500);
-    }
+   
   } catch (err) {
     iziToast.error({
 					 title: '',
@@ -69,7 +70,6 @@ loadBtn.addEventListener("click", data => {
 					 message: `Error`,
 				 });
   }
-  
 })
 
 function Scroll() {

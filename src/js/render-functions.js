@@ -50,7 +50,7 @@ export function createMarkup() {
 			gallery.insertAdjacentHTML("beforeend", markup);
 			lightbox.refresh();
 			hideLoader();
-			loadBtn.classList.remove("hidden");
+			
 			return data;
 }}
 )
