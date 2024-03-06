@@ -10,13 +10,13 @@ import { getImages } from "./pixabay-api.js";
 
 const gallery = document.querySelector(".gallery");
 const loadBtn = document.querySelector(".load-btn");
-
+export let maxPage;
 export function createMarkup() {
 	showLoader()
 	getImages()
 		
 		.then(data => {
-
+			maxPage = data.totalHits / data.hits.length;
 			const images = data.hits;
 			 if (data.totalHits === 0) {
 				 

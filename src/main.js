@@ -2,6 +2,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 import { createMarkup } from "./js/render-functions.js";
+import { maxPage } from "./js/render-functions.js";
 
 const form = document.querySelector(".search-form");
 const gallery = document.querySelector(".gallery");
@@ -10,7 +11,7 @@ const loadBtn = document.querySelector(".load-btn");
 form.addEventListener('submit', serchImage);
 export let page = 1;
 export let input;
-const maxPage = 33;
+
 
 function serchImage(event) {
   page = 1;
@@ -62,7 +63,11 @@ loadBtn.addEventListener("click", data => {
       setTimeout(()=>{Scroll()},500);
     }
   } catch (err) {
-    console.log(err);
+    iziToast.error({
+					 title: '',
+					 position: 'topRight',
+					 message: `Error`,
+				 });
   }
   
 })
